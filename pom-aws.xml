@@ -51,6 +51,11 @@
       <scope>test</scope>
     </dependency>
 
+    <!-- AWS LAMBDA -->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-amazon-lambda-http</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
