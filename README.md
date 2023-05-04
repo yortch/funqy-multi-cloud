@@ -1,17 +1,23 @@
 # Multi Cloud Funqy Demo
 
 ## Local
-URL=localhost:8080
 
-curl -X GET $URL/hello 
-curl -d '"Dan"' -X POST $URL/greeting
-
+1. Launch application using:
+    ```
+    ./mvnw quarkus:dev
+    ```
+1. Test by issuing `curl` commands:
+    ```
+    URL=http://localhost:8080/api
+    curl -X GET $URL/hello 
+    curl -d '"Funqy"' -X POST $URL/greet
+    ```
 ## Azure 
 
 ### Pre-requisites
 
 1. AZ CLI
-1. Azure Functions Core Tools
+1. Azure Functions Core Tools (optional to run function locally)
 
 ### Deploy
 
@@ -21,7 +27,7 @@ curl -d '"Dan"' -X POST $URL/greeting
     ```
 
 1. Deploy to Azure
-    
+        
     ```
-    mvn clean install -DskipTests -DtenantId=$TENANT -DfunctionResourceGroup=$RESOURCE azure-functions:deploy
+    ./mvnw clean install -DskipTests -DtenantId=$TENANT -DfunctionResourceGroup=$RESOURCE azure-functions:deploy
     ```
