@@ -17,11 +17,6 @@
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
     <maven.compiler.parameters>true</maven.compiler.parameters>
-    <!-- AZURE FUNCTIONS -->
-    <azure.functions.maven.plugin.version>1.19.0</azure.functions.maven.plugin.version>
-    <functionAppName>${artifactId}-1683144894087</functionAppName>
-    <functionAppRegion>eastus</functionAppRegion>
-    <functionResourceGroup>quarkus-examples</functionResourceGroup>
   </properties>
 
   <dependencyManagement>
@@ -113,37 +108,6 @@
           </filesets>
         </configuration>
       </plugin>      
-      <!-- AZURE FUNCTIONS -->
-      <plugin>
-        <groupId>com.microsoft.azure</groupId>
-        <artifactId>azure-functions-maven-plugin</artifactId>
-        <version>${azure.functions.maven.plugin.version}</version>
-        <executions>
-          <execution>
-            <id>package-functions</id>
-            <goals>
-              <goal>package</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <appName>${functionAppName}</appName>
-          <resourceGroup>${functionResourceGroup}</resourceGroup>
-          <appServicePlanName>java-functions-app-service-plan</appServicePlanName>
-          <region>${functionAppRegion}</region>
-          <runtime>
-            <os>linux</os>
-            <javaVersion>11</javaVersion>
-          </runtime>
-          <appSettings>
-            <property>
-              <name>FUNCTIONS_EXTENSION_VERSION</name>
-              <value>~4</value>
-            </property>
-          </appSettings>
-        </configuration>
-      </plugin>
-      <!-- END AZURE -->
     </plugins>
   </build>
   <profiles>
