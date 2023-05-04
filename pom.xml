@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.demo</groupId>
-  <artifactId>funqy-azure-demo</artifactId>
+  <artifactId>funqy-demo</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <properties>
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
@@ -19,18 +19,10 @@
     <maven.compiler.parameters>true</maven.compiler.parameters>
     <!-- AZURE FUNCTIONS -->
     <azure.functions.maven.plugin.version>1.19.0</azure.functions.maven.plugin.version>
-    <functionAppName>${project.artifactId}-1683144894087</functionAppName>
+    <functionAppName>${artifactId}-1683144894087</functionAppName>
     <functionAppRegion>eastus</functionAppRegion>
     <functionResourceGroup>quarkus-examples</functionResourceGroup>
   </properties>
-
-  <repositories>
-    <repository>
-      <id>project.local</id>
-      <name>project</name>
-      <url>file:${project.basedir}/../funqy-demo</url>
-    </repository>
-  </repositories>
 
   <dependencyManagement>
     <dependencies>
@@ -46,9 +38,22 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.demo</groupId>
-      <artifactId>funqy-demo</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-funqy-http</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-resteasy-jackson</artifactId>
+    </dependency>       
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-junit5</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>rest-assured</artifactId>
+      <scope>test</scope>
     </dependency>
 
     <!-- AZURE FUNCTIONS -->

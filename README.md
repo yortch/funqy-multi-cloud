@@ -4,7 +4,7 @@
 
 1. Launch application using:
     ```
-    ./mvnw quarkus:dev
+    ./mvnw quarkus:dev -f funqy-demo/pom.xml
     ```
 1. Test by issuing `curl` commands:
     ```
@@ -29,5 +29,5 @@
 1. Deploy to Azure
         
     ```
-    ./mvnw clean package -DskipTests -DtenantId=$TENANT -DfunctionResourceGroup=$RESOURCE azure-functions:deploy
+    ./mvnw clean package -f funqy-azure-demo/pom.xml -DskipTests -DtenantId=$TENANT -DfunctionResourceGroup=$RESOURCE azure-functions:deploy
     ```
