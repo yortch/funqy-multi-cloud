@@ -12,7 +12,8 @@
     curl -X GET $URL/hello 
     curl -d '"Funqy"' -X POST $URL/greet
     ```
-## Azure Functions
+
+## Azure Function
 
 ### Pre-requisites
 
@@ -70,4 +71,32 @@
     URL=<URL from deploy output>/api
     curl -X GET $URL/hello 
     curl -d '"Lambda"' -X POST $URL/greet
+    ```
+
+## Google Cloud Function
+
+### Pre-requisites
+
+1. gcloud CLI
+
+### Deploy
+
+1. Login to gcloud
+    ```
+    gcloud init
+    ```
+
+1. Build and Deploy to GCP
+    ```
+    ./mvnw clean package -f pom-gcp.xml -DskipTests
+    gcloud functions deploy quarkus-funqy-http \
+        --entry-point=io.quarkus.gcp.functions.http.QuarkusHttpFunction \
+        --runtime=java11 --trigger-http --allow-unauthenticated --source=target/deployment
+
+    ```
+1. Test by issuing `curl` commands with the URL from the deploy output:
+    ```
+    URL=<URL from deploy output>/api
+    curl -X GET $URL/hello 
+    curl -d '"GCP"' -X POST $URL/greet
     ```
