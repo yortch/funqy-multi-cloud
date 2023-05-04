@@ -29,5 +29,5 @@
 1. Deploy to Azure
         
     ```
-    ./mvnw clean install -DskipTests -DtenantId=$TENANT -DfunctionResourceGroup=$RESOURCE azure-functions:deploy
+    ./mvnw clean package -DskipTests -DtenantId=$TENANT -DfunctionResourceGroup=$RESOURCE azure-functions:deploy
     ```
