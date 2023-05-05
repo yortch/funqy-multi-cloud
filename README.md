@@ -30,7 +30,7 @@
 1. Build and Deploy to Azure
         
     ```
-    ./mvnw clean package -f pom-azure.xml -DskipTests -DtenantId=$TENANT -DfunctionResourceGroup=$RESOURCE azure-functions:deploy
+    ./mvnw clean package -f pom-azure.xml -DskipTests -DtenantId=$TENANT -DfunctionResourceGroup=$RESOURCEGROUP azure-functions:deploy
     ```
 
 1. Test by issuing `curl` commands with the URL from the deploy output:
@@ -99,4 +99,29 @@
     URL=<URL from deploy output>/api
     curl -X GET $URL/hello 
     curl -d '"GCP"' -X POST $URL/greet
+    ```
+
+## KNative
+
+### Pre-requisites
+
+1. oc (OpenShift) CLI
+1. [kn CLI](https://docs.openshift.com/container-platform/4.12/serverless/install/installing-kn.html)
+1. [Install OpenShift Serverless Operator](https://docs.openshift.com/container-platform/4.12/serverless/install/install-serverless-operator.html)
+    1. Log into OpenShift Console with a cluster admin user
+    1. Navigate to Operators/OperatorHub
+    1. Search for Serverless and click on "Red Hat OpenShift Serverless"
+    1. Click on Install
+    1. Accept default values and click Install
+    1. Once Operator is installed, create [Knative Serving](https://docs.openshift.com/container-platform/4.12/serverless/install/installing-knative-serving.html#installing-knative-serving) instance by running this command:
+    ```
+    oc apply -f knative/serving.yaml
+    ```
+### Deploy
+
+1. Deploy to OpenShift:
+    ```
+    oc login --token=<token> --server=<api-url>
+    oc new-project funqy-knative
+    kn func deploy
     ```

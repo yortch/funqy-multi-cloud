@@ -1,0 +1,36 @@
+specVersion: 0.35.0
+name: func
+runtime: quarkus
+registry: image-registry.openshift-image-registry.svc:5000/funqy-knative
+image: image-registry.openshift-image-registry.svc:5000/funqy-knative/func:latest
+imageDigest: sha256:9adca533e4c1bccfe4ee96cd3d1a34f19a93caf1bb0f8403cff92a2e0169f929
+created: 2023-05-05T09:29:48.880276-04:00
+build:
+  buildpacks: []
+  builder: s2i
+  buildEnvs:
+  - name: BP_JVM_VERSION
+    value: "11"
+  - name: BP_NATIVE_IMAGE
+    value: "false"
+  - name: BP_MAVEN_BUILT_ARTIFACT
+    value: func.yaml target/quarkus-app/lib/ target/quarkus-app/*.jar target/quarkus-app/app/
+      target/quarkus-app/quarkus/
+  - name: BP_MAVEN_BUILD_ARGUMENTS
+    value: package -DskipTests=true -Dmaven.javadoc.skip=true -Dquarkus.package.type=fast-jar
+  - name: MAVEN_S2I_ARTIFACT_DIRS
+    value: target/quarkus-app
+  - name: S2I_SOURCE_DEPLOYMENTS_FILTER
+    value: lib quarkus-run.jar app quarkus
+run:
+  volumes: []
+  envs: []
+deploy:
+  namespace: funqy-knative
+  remote: false
+  annotations: {}
+  options: {}
+  labels: []
+  healthEndpoints:
+    liveness: /health/liveness
+    readiness: /health/readiness
