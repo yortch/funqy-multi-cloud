@@ -119,9 +119,21 @@
     ```
 ### Deploy
 
-1. Deploy to OpenShift:
+1. Build KNative Function and deploy it to OpenShift:
     ```
     oc login --token=<token> --server=<api-url>
     oc new-project funqy-knative
     kn func deploy
+    ```
+
+    1. Alternatively you can deploy function using previously published public image:
+    ```
+    kn func deploy --build=false --registry quay.io/jbaldera --image quay.io/jbaldera/funqy-knative:1.0
+    ```
+
+1. Test by issuing `curl` commands with the URL from the deploy output:
+    ```
+    URL=<URL from deploy output>
+    curl -X GET $URL/hello 
+    curl -d '"KNative"' -X POST $URL/greet
     ```
