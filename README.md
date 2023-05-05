@@ -8,7 +8,7 @@
     ```
 1. Test by issuing `curl` commands:
     ```
-    URL=http://localhost:8080/api
+    URL=http://localhost:8080
     curl -X GET $URL/hello 
     curl -d '"Funqy"' -X POST $URL/greet
     ```
@@ -27,17 +27,18 @@
     az login --service-principal -u $CLIENT_ID -p $PASSWORD --tenant $TENANT
     ```
 
-1. Build and Deploy to Azure
+1. Build Azure Function and deploy it to Azure
         
     ```
-    ./mvnw clean package -f pom-azure.xml -DskipTests -DtenantId=$TENANT -DfunctionResourceGroup=$RESOURCEGROUP azure-functions:deploy
+    ./mvnw clean package -f pom-azure.xml -DskipTests -DtenantId=$TENANT \
+    -DfunctionResourceGroup=$RESOURCEGROUP azure-functions:deploy
     ```
 
 1. Test by issuing `curl` commands with the URL from the deploy output:
     ```
-    URL=<URL from deploy output>
-    curl -X GET $URL/hello 
-    curl -d '"Azure"' -X POST $URL/greet
+    URL=<URL from deploy output without ending slash>
+    curl -w '\nTime: %{time_total}s\n' -X GET $URL/hello 
+    curl -w '\nTime: %{time_total}s\n' -d '"Azure"' -X POST $URL/greet
     ```
 
 ## AWS Lambda
@@ -54,10 +55,13 @@
     aws configure
     ```
 
-1. Build and Deploy to AWS
+1. Build Lambda function
         
     ```
     ./mvnw clean package -f pom-aws.xml -DskipTests
+    ```
+1. Deploy Lambda to AWS
+    ```
     sam deploy -t target/sam.jvm.yaml --guided --capabilities CAPABILITY_NAMED_IAM
     ```
    1. Alternatively you can use Native build and deploy to AWS
@@ -68,9 +72,9 @@
 
 1. Test by issuing `curl` commands with the URL from the deploy output:
     ```
-    URL=<URL from deploy output>/api
-    curl -X GET $URL/hello 
-    curl -d '"Lambda"' -X POST $URL/greet
+    URL=<URL from deploy output without ending slash>
+    curl -w '\nTime: %{time_total}s\n' -X GET $URL/hello 
+    curl -w '\nTime: %{time_total}s\n' -d '"AWS"' -X POST $URL/greet
     ```
 
 ## Google Cloud Function
@@ -86,19 +90,22 @@
     gcloud init
     ```
 
-1. Build and Deploy to GCP
+1. Build Google Cloud Function 
     ```
     ./mvnw clean package -f pom-gcp.xml -DskipTests
+    ```
+
+1. Deploy Function to GCP
+    ```
     gcloud functions deploy quarkus-funqy-http \
         --entry-point=io.quarkus.gcp.functions.http.QuarkusHttpFunction \
         --runtime=java11 --trigger-http --allow-unauthenticated --source=target/deployment
-
     ```
 1. Test by issuing `curl` commands with the URL from the deploy output:
     ```
-    URL=<URL from deploy output>/api
-    curl -X GET $URL/hello 
-    curl -d '"GCP"' -X POST $URL/greet
+    URL=<URL from deploy output>
+    curl -w '\nTime: %{time_total}s\n' -X GET $URL/hello 
+    curl -w '\nTime: %{time_total}s\n' -d '"GCP"' -X POST $URL/greet
     ```
 
 ## KNative
@@ -134,6 +141,6 @@
 1. Test by issuing `curl` commands with the URL from the deploy output:
     ```
     URL=<URL from deploy output>
-    curl -X GET $URL/hello 
-    curl -d '"KNative"' -X POST $URL/greet
+    curl -w '\nTime: %{time_total}s\n' -X GET $URL/hello 
+    curl -w '\nTime: %{time_total}s\n' -d '"KNative"' -X POST $URL/greet
     ```
