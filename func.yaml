@@ -3,7 +3,7 @@ name: func
 runtime: quarkus
 registry: image-registry.openshift-image-registry.svc:5000/funqy-knative
 image: image-registry.openshift-image-registry.svc:5000/funqy-knative/func:latest
-imageDigest: sha256:9adca533e4c1bccfe4ee96cd3d1a34f19a93caf1bb0f8403cff92a2e0169f929
+imageDigest: sha256:ff331c42805257e95eba9b7704ca097e477f57ea1de70a676b2dfc96b38577ca
 created: 2023-05-05T09:29:48.880276-04:00
 build:
   buildpacks: []
@@ -17,7 +17,7 @@ build:
     value: func.yaml target/quarkus-app/lib/ target/quarkus-app/*.jar target/quarkus-app/app/
       target/quarkus-app/quarkus/
   - name: BP_MAVEN_BUILD_ARGUMENTS
-    value: package -DskipTests=true -Dmaven.javadoc.skip=true -Dquarkus.package.type=fast-jar
+    value: package -f pom-knative.xml -DskipTests=true -Dmaven.javadoc.skip=true -Dquarkus.package.type=fast-jar
   - name: MAVEN_S2I_ARTIFACT_DIRS
     value: target/quarkus-app
   - name: S2I_SOURCE_DEPLOYMENTS_FILTER

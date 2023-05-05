@@ -54,6 +54,11 @@
       <artifactId>rest-assured</artifactId>
       <scope>test</scope>
     </dependency>
+    <!-- KNative -->
+    <dependency>
+        <groupId>io.quarkus</groupId>
+        <artifactId>quarkus-funqy-knative-events</artifactId>
+    </dependency>
 
   </dependencies>
   <build>

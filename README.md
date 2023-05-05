@@ -17,7 +17,7 @@
 
 ### Pre-requisites
 
-1. AZ CLI
+1. [AZ CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
 1. Azure Functions Core Tools (optional to run function locally)
 
 ### Deploy
@@ -44,8 +44,8 @@
 
 ### Pre-requisites
 
-1. AWS CLI
-1. SAM CLI
+1. [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+1. [SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html)
 
 ### Deploy
 
@@ -77,7 +77,7 @@
 
 ### Pre-requisites
 
-1. gcloud CLI
+1. [gcloud CLI](https://cloud.google.com/sdk/docs/install)
 
 ### Deploy
 
