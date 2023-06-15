@@ -22,6 +22,16 @@
 
 ### Deploy
 
+1. Export the following variables:
+    ```
+    export GUID='guid'
+    export CLIENT_ID='client-id'
+    export PASSWORD='value'
+    export TENANT='tenant-value'
+    export SUBSCRIPTION='subscription-value'
+    export RESOURCEGROUP='resource-group'
+    ```
+
 1. Login to Azure
     ```
     az login --service-principal -u $CLIENT_ID -p $PASSWORD --tenant $TENANT
