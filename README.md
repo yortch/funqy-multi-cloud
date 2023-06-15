@@ -136,7 +136,7 @@
     ```
 ### Deploy
 
-1. Build KNative Function and deploy it to OpenShift:
+1. Build KNative Function and deploy it to OpenShift (requires podman desktop/docker running to deploy):
     ```
     oc login --token=<token> --server=<api-url>
     oc new-project funqy-knative
@@ -145,7 +145,7 @@
 
     1. Alternatively you can deploy function using previously published public image:
     ```
-    kn func deploy --build=false --registry quay.io/jbaldera --image quay.io/jbaldera/funqy-knative:1.0
+    kn func deploy --build=false --push=false --registry quay.io --image quay.io/jbaldera/funqy-knative:1.0
     ```
 
 1. Test by issuing `curl` commands with the URL from the deploy output:

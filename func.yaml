@@ -1,9 +1,9 @@
 specVersion: 0.35.0
 name: func
 runtime: quarkus
-registry: image-registry.openshift-image-registry.svc:5000/funqy-knative
-image: image-registry.openshift-image-registry.svc:5000/funqy-knative/func:latest
-imageDigest: sha256:ff331c42805257e95eba9b7704ca097e477f57ea1de70a676b2dfc96b38577ca
+registry: quay.io
+image: quay.io/jbaldera/funqy-knative:1.0
+imageDigest: ""
 created: 2023-05-05T09:29:48.880276-04:00
 build:
   buildpacks: []
